@@ -10,7 +10,7 @@ const autoCompleteConfig = {
     inputValue(movie) {
         return movie.Title;
     },
-    //fetch data for search term
+    //fetch movie titles for search term
     async fetchData(searchTerm) {
         const response = await axios.get('http://www.omdbapi.com/',{
             params: {
@@ -28,6 +28,7 @@ const autoCompleteConfig = {
 
 }
 
+//left input box
 createAutoComplete({
     ...autoCompleteConfig,
     root: document.querySelector('#left-autocomplete'),
@@ -37,6 +38,8 @@ createAutoComplete({
         onMovieSelect(movie, document.querySelector('#left-summary'), 'left');
     }
 });
+
+//right input box
 createAutoComplete({
     ...autoCompleteConfig,
     root: document.querySelector('#right-autocomplete'),
@@ -84,10 +87,10 @@ const runComparison = () => {
         const rightSideValue = parseInt(rightStat.dataset.value);
 
         //Reset the colors
-    leftStat.classList.remove('is-warning');
-    rightStat.classList.remove('is-warning');
-    leftStat.classList.add('is-primary');
-    rightStat.classList.add('is-primary');
+        leftStat.classList.remove('is-warning');
+        rightStat.classList.remove('is-warning');
+        leftStat.classList.add('is-primary');
+        rightStat.classList.add('is-primary');
 
         if(rightSideValue > leftSideValue) {
             rightStat.classList.remove('is-primary');
